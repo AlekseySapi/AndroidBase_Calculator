@@ -16,4 +16,5 @@
     <string name="_multiply">×</string>
     <string name="_divide">÷</string>
     <string name="_equals">=</string>
+    <string name="number_entry">Введите число</string>
 </resources>
