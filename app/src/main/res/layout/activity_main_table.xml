@@ -6,27 +6,27 @@
     <TableRow>
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/button7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/button_margin"
-            android:text="@string/_1"
+            android:text="@string/_7"
             android:textSize="@dimen/button_text" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/button_margin"
-            android:text="@string/_2"
+            android:text="@string/_8"
             android:textSize="@dimen/button_text" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/button9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/button_margin"
-            android:text="@string/_3"
+            android:text="@string/_9"
             android:textSize="@dimen/button_text" />
 
         <Button
@@ -76,27 +76,27 @@
     <TableRow>
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/button_margin"
-            android:text="@string/_7"
+            android:text="@string/_1"
             android:textSize="@dimen/button_text" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/button_margin"
-            android:text="@string/_8"
+            android:text="@string/_2"
             android:textSize="@dimen/button_text" />
 
         <Button
-            android:id="@+id/button9"
+            android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/button_margin"
-            android:text="@string/_9"
+            android:text="@string/_3"
             android:textSize="@dimen/button_text" />
 
         <Button
@@ -106,6 +106,7 @@
             android:layout_margin="@dimen/button_margin"
             android:text="@string/_minus"
             android:textSize="@dimen/button_text" />
+
     </TableRow>
 
     <TableRow>

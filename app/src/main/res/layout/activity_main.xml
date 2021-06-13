@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@drawable/fon"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
@@ -24,6 +24,7 @@
         android:id="@+id/number_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/entry_margin"
         android:layout_weight="2"
         android:hint="@string/number_entry"
         android:shadowColor="#0E0E0E"
@@ -31,15 +32,29 @@
         android:shadowDy="5"
         android:shadowRadius="2"
         android:textAlignment="textEnd"
-        android:layout_marginHorizontal="@dimen/entry_margin"
         android:textSize="@dimen/entry_text"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/include" />
-
-    <Space
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"/>
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="12"
+            tools:ignore="NestedWeights" />
+
+        <Button
+            android:id="@+id/button_backspace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/_backspace"
+            android:textAlignment="center" />
+    </LinearLayout>
 
     <include
         android:id="@+id/include"
