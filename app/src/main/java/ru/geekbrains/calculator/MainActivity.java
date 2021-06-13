@@ -9,21 +9,75 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Calculations calculations = new Calculations();
+    private Calculations calc = new Calculations();
 
-    private TextView numberEntry, operation;
+    private TextView entryField, operation;
 
-    private boolean newEntry = true;
+    private String str;
 
-    private final View.OnClickListener listener = view -> {
+    private final View.OnClickListener listenerDigits = view -> {
         Button button = (Button) view;
-        if(newEntry) {
-            numberEntry.setText(button.getText());
-            newEntry = false;
+        if (entryField.getText().toString().equals("0")) {
+            entryField.setText(button.getText());
         } else {
-            numberEntry.append(button.getText());
+            entryField.append(button.getText());
         }
     };
+
+    private final View.OnClickListener listenerZero = view -> {
+        Button button = (Button) view;
+        if (!entryField.getText().toString().equals("0")) {
+            entryField.append(button.getText());
+        }
+    };
+
+    private final View.OnClickListener listenerPoint = view -> {
+        Button button = (Button) view;
+        if (entryField.getText() != null) {
+            str = entryField.getText().toString();
+            boolean hasPoint = false;
+            if (str.contains(button.getText())) {
+                hasPoint = true;
+            }
+            if (!hasPoint) {
+                entryField.append(button.getText());
+            }
+            str = "";
+        }
+        if (entryField.getText() == null || entryField.getText() == "0") {
+            entryField.append("0" + button.getText());
+        }
+    };
+
+
+    private final View.OnClickListener listenerActions = view -> {
+        Button button = (Button) view;
+        operation.setText(button.getText());
+    };
+
+    private final View.OnClickListener listenerEquals = view -> {
+        Button button = (Button) view;
+        operation.setText(button.getText());
+    };
+
+
+    private final View.OnClickListener listenerC = view -> {
+        operation.setText("");
+        entryField.setText("0");
+    };
+
+    private final View.OnClickListener listenerBackspace = view -> {
+        if (entryField.getText().length() > 1) {
+            str = entryField.getText().toString();
+            entryField.setText(str.substring(0, str.length() - 1));
+
+            str = "";
+        }
+        if (entryField.getText().length() == 0 || entryField.getText().length() == 1) {
+            entryField.setText("0");
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initTextView() {
-        numberEntry = findViewById(R.id.number_entry);
         operation = findViewById(R.id.operation);
+        entryField = findViewById(R.id.number_entry);
     }
 
     private void initDigitButtons() {
@@ -55,17 +109,17 @@ public class MainActivity extends AppCompatActivity {
         Button button9 = findViewById(R.id.button9);
         Button buttonPoint = findViewById(R.id.button_point);
 
-        button0.setOnClickListener(listener);
-        button1.setOnClickListener(listener);
-        button2.setOnClickListener(listener);
-        button3.setOnClickListener(listener);
-        button4.setOnClickListener(listener);
-        button5.setOnClickListener(listener);
-        button6.setOnClickListener(listener);
-        button7.setOnClickListener(listener);
-        button8.setOnClickListener(listener);
-        button9.setOnClickListener(listener);
-        buttonPoint.setOnClickListener(listener);
+        button0.setOnClickListener(listenerZero);
+        button1.setOnClickListener(listenerDigits);
+        button2.setOnClickListener(listenerDigits);
+        button3.setOnClickListener(listenerDigits);
+        button4.setOnClickListener(listenerDigits);
+        button5.setOnClickListener(listenerDigits);
+        button6.setOnClickListener(listenerDigits);
+        button7.setOnClickListener(listenerDigits);
+        button8.setOnClickListener(listenerDigits);
+        button9.setOnClickListener(listenerDigits);
+        buttonPoint.setOnClickListener(listenerPoint);
     }
 
     private void initActionButtons() {
@@ -74,11 +128,16 @@ public class MainActivity extends AppCompatActivity {
         Button buttonMulti = findViewById(R.id.button_multiply);
         Button buttonDiv = findViewById(R.id.button_divide);
         Button buttonEquals = findViewById(R.id.button_equals);
-        buttonPlus.setOnClickListener(listener);
-        buttonMinus.setOnClickListener(listener);
-        buttonMulti.setOnClickListener(listener);
-        buttonDiv.setOnClickListener(listener);
-        buttonEquals.setOnClickListener(listener);
+        Button backspace = findViewById(R.id.button_backspace);
+        Button buttonC = findViewById(R.id.button_c);
+
+        buttonPlus.setOnClickListener(listenerActions);
+        buttonMinus.setOnClickListener(listenerActions);
+        buttonMulti.setOnClickListener(listenerActions);
+        buttonDiv.setOnClickListener(listenerActions);
+        buttonEquals.setOnClickListener(listenerEquals);
+        backspace.setOnClickListener(listenerBackspace);
+        buttonC.setOnClickListener(listenerC);
     }
 
 }

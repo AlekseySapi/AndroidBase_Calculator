@@ -16,6 +16,7 @@
     <string name="_multiply">×</string>
     <string name="_divide">÷</string>
     <string name="_equals">=</string>
-    <string name="number_entry">|</string>
+    <string name="number_entry">0</string>
     <string name="_backspace"><![CDATA[<]]></string>
+    <string name="_c">C</string>
 </resources>
