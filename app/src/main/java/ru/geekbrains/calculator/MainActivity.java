@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView entryField, operation;
 
     private String str;
+    private String errMessage = "Ошибка";
 
     private final View.OnClickListener listenerDigits = view -> {
         Button button = (Button) view;
@@ -51,8 +52,30 @@ public class MainActivity extends AppCompatActivity {
 
     private final View.OnClickListener listenerZero = view -> {
         Button button = (Button) view;
-        if (!entryField.getText().toString().equals("0")) {
-            entryField.append(button.getText());
+        switch (operation.getText().toString()) {
+            case "": {
+                if (!entryField.getText().toString().equals("0")) {
+                    entryField.append(button.getText());
+                }
+                break;
+            }
+            case "=": {
+                operation.setText("");
+                calc.setSecondEntry(true);
+                entryField.setText(button.getText());
+                break;
+            }
+            default: {
+                if(calc.isSecondEntry()) {
+                    entryField.setText(button.getText());
+                    calc.setSecondEntry(false);
+                } else {
+                    if (!entryField.getText().toString().equals("0")) {
+                        entryField.append(button.getText());
+                    }
+                }
+                break;
+            }
         }
     };
 
@@ -84,26 +107,33 @@ public class MainActivity extends AppCompatActivity {
 
     private final View.OnClickListener listenerEquals = view -> {
         Button button = (Button) view;
-        calc.setNum2(Double.parseDouble(entryField.getText().toString()));
-        switch (operation.getText().toString()) {
-            case "+": {
-                entryField.setText(String.valueOf(calc.plus(calc.getNum1(), calc.getNum2())));
-                break;
+        if(!entryField.getText().toString().equals(errMessage)) {
+            calc.setNum2(Double.parseDouble(entryField.getText().toString()));
+            switch (operation.getText().toString()) {
+                case "+": {
+                    entryField.setText(String.valueOf(calc.plus(calc.getNum1(), calc.getNum2())));
+                    break;
+                }
+                case "-": {
+                    entryField.setText(String.valueOf(calc.minus(calc.getNum1(), calc.getNum2())));
+                    break;
+                }
+                case "×": {
+                    entryField.setText(String.valueOf(calc.multiply(calc.getNum1(), calc.getNum2())));
+                    break;
+                }
+                case "÷": {
+                    if (calc.getNum2() == 0) {
+                        entryField.setText(errMessage);
+                    } else {
+                        entryField.setText(String.valueOf(calc.divide(calc.getNum1(), calc.getNum2())));
+                    }
+                    break;
+                }
             }
-            case "-": {
-                entryField.setText(String.valueOf(calc.minus(calc.getNum1(), calc.getNum2())));
-                break;
-            }
-            case "×": {
-                entryField.setText(String.valueOf(calc.multiply(calc.getNum1(), calc.getNum2())));
-                break;
-            }
-            case "÷": {
-                entryField.setText(String.valueOf(calc.divide(calc.getNum1(), calc.getNum2())));
-                break;
-            }
+            operation.setText(button.getText());
         }
-        operation.setText(button.getText());
+
     };
 
 
