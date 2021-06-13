@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initTextView();
-        initButtons();
+        initDigitButtons();
+        initActionButtons();
 
 
     }
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         operation = findViewById(R.id.operation);
     }
 
-    private void initButtons() {
+    private void initDigitButtons() {
         Button button0 = findViewById(R.id.button0);
         Button button1 = findViewById(R.id.button1);
         Button button2 = findViewById(R.id.button2);
@@ -53,11 +54,7 @@ public class MainActivity extends AppCompatActivity {
         Button button8 = findViewById(R.id.button8);
         Button button9 = findViewById(R.id.button9);
         Button buttonPoint = findViewById(R.id.button_point);
-/*        Button buttonPlus = findViewById(R.id.button_plus);
-        Button buttonMinus = findViewById(R.id.button_minus);
-        Button buttonMulti = findViewById(R.id.button_multiply);
-        Button buttonDiv = findViewById(R.id.button_divide);
-        Button buttonEquals = findViewById(R.id.button_equals);*/
+
         button0.setOnClickListener(listener);
         button1.setOnClickListener(listener);
         button2.setOnClickListener(listener);
@@ -69,11 +66,19 @@ public class MainActivity extends AppCompatActivity {
         button8.setOnClickListener(listener);
         button9.setOnClickListener(listener);
         buttonPoint.setOnClickListener(listener);
-/*        buttonPlus.setOnClickListener(listener);
+    }
+
+    private void initActionButtons() {
+        Button buttonPlus = findViewById(R.id.button_plus);
+        Button buttonMinus = findViewById(R.id.button_minus);
+        Button buttonMulti = findViewById(R.id.button_multiply);
+        Button buttonDiv = findViewById(R.id.button_divide);
+        Button buttonEquals = findViewById(R.id.button_equals);
+        buttonPlus.setOnClickListener(listener);
         buttonMinus.setOnClickListener(listener);
         buttonMulti.setOnClickListener(listener);
         buttonDiv.setOnClickListener(listener);
-        buttonEquals.setOnClickListener(listener);*/
-
+        buttonEquals.setOnClickListener(listener);
     }
+
 }
