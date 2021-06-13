@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView entryField, operation;
 
-    private String str;
+    private String str, result;
     private String errMessage = "Ошибка";
 
     private final View.OnClickListener listenerDigits = view -> {
@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button) view;
         operation.setText(button.getText());
         calc.setNum1(Double.parseDouble(entryField.getText().toString()));
+        calc.setSecondEntry(true);
     };
 
     private final View.OnClickListener listenerEquals = view -> {
@@ -111,22 +112,30 @@ public class MainActivity extends AppCompatActivity {
             calc.setNum2(Double.parseDouble(entryField.getText().toString()));
             switch (operation.getText().toString()) {
                 case "+": {
-                    entryField.setText(String.valueOf(calc.plus(calc.getNum1(), calc.getNum2())));
+                    result = String.valueOf(calc.plus(calc.getNum1(), calc.getNum2()));
+
+                    entryField.setText(result);
                     break;
                 }
                 case "-": {
-                    entryField.setText(String.valueOf(calc.minus(calc.getNum1(), calc.getNum2())));
+                    result = String.valueOf(calc.minus(calc.getNum1(), calc.getNum2()));
+
+                    entryField.setText(result);
                     break;
                 }
                 case "×": {
-                    entryField.setText(String.valueOf(calc.multiply(calc.getNum1(), calc.getNum2())));
+                    result = String.valueOf(calc.multiply(calc.getNum1(), calc.getNum2()));
+
+                    entryField.setText(result);
                     break;
                 }
                 case "÷": {
                     if (calc.getNum2() == 0) {
                         entryField.setText(errMessage);
                     } else {
-                        entryField.setText(String.valueOf(calc.divide(calc.getNum1(), calc.getNum2())));
+                        result = String.valueOf(calc.divide(calc.getNum1(), calc.getNum2()));
+
+                        entryField.setText(result);
                     }
                     break;
                 }
