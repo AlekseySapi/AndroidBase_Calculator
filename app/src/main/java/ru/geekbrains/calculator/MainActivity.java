@@ -17,11 +17,36 @@ public class MainActivity extends AppCompatActivity {
 
     private final View.OnClickListener listenerDigits = view -> {
         Button button = (Button) view;
-        if (entryField.getText().toString().equals("0")) {
-            entryField.setText(button.getText());
-        } else {
-            entryField.append(button.getText());
+        switch (operation.getText().toString()) {
+            case "": {
+                if (entryField.getText().toString().equals("0")) {
+                    entryField.setText(button.getText());
+                } else {
+                    entryField.append(button.getText());
+                }
+                break;
+            }
+            case "=": {
+                operation.setText("");
+                calc.setSecondEntry(true);
+                entryField.setText(button.getText());
+                break;
+            }
+            default: {
+                if(calc.isSecondEntry()) {
+                    entryField.setText(button.getText());
+                    calc.setSecondEntry(false);
+                } else {
+                    if (entryField.getText().toString().equals("0")) {
+                        entryField.setText(button.getText());
+                    } else {
+                        entryField.append(button.getText());
+                    }
+                }
+                break;
+            }
         }
+
     };
 
     private final View.OnClickListener listenerZero = view -> {
@@ -45,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
             str = "";
         }
         if (entryField.getText() == null || entryField.getText() == "0") {
-            entryField.append("0" + button.getText());
+            entryField.setText("0");
+            entryField.append(button.getText());
         }
     };
 
@@ -53,10 +79,30 @@ public class MainActivity extends AppCompatActivity {
     private final View.OnClickListener listenerActions = view -> {
         Button button = (Button) view;
         operation.setText(button.getText());
+        calc.setNum1(Double.parseDouble(entryField.getText().toString()));
     };
 
     private final View.OnClickListener listenerEquals = view -> {
         Button button = (Button) view;
+        calc.setNum2(Double.parseDouble(entryField.getText().toString()));
+        switch (operation.getText().toString()) {
+            case "+": {
+                entryField.setText(String.valueOf(calc.plus(calc.getNum1(), calc.getNum2())));
+                break;
+            }
+            case "-": {
+                entryField.setText(String.valueOf(calc.minus(calc.getNum1(), calc.getNum2())));
+                break;
+            }
+            case "×": {
+                entryField.setText(String.valueOf(calc.multiply(calc.getNum1(), calc.getNum2())));
+                break;
+            }
+            case "÷": {
+                entryField.setText(String.valueOf(calc.divide(calc.getNum1(), calc.getNum2())));
+                break;
+            }
+        }
         operation.setText(button.getText());
     };
 
@@ -64,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
     private final View.OnClickListener listenerC = view -> {
         operation.setText("");
         entryField.setText("0");
+        calc.setSecondEntry(true);
     };
 
     private final View.OnClickListener listenerBackspace = view -> {

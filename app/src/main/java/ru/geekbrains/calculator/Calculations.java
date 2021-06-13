@@ -4,12 +4,14 @@ public class Calculations {
 
     private double num1;
     private double num2;
-    private double result;
+    private boolean isSecondEntry = true;
 
-    public Calculations() {
-        this.num1 = 0;
-        this.num2 = 0;
-        this.result = 0;
+    public boolean isSecondEntry() {
+        return isSecondEntry;
+    }
+
+    public void setSecondEntry(boolean secondEntry) {
+        isSecondEntry = secondEntry;
     }
 
     public double getNum1() {
@@ -26,14 +28,6 @@ public class Calculations {
 
     public void setNum2(double num2) {
         this.num2 = num2;
-    }
-
-    public double getResult() {
-        return result;
-    }
-
-    public void setResult(double result) {
-        this.result = result;
     }
 
     public double plus(double num1, double num2) {
