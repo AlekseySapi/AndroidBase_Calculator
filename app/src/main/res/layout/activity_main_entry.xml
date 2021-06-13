@@ -10,22 +10,19 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textAlignment="textEnd"
-        android:layout_margin="@dimen/entry_margin"
-        android:textSize="@dimen/operation_text" />
+        android:textSize="@dimen/operation_text_size" />
 
     <TextView
         android:id="@+id/number_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/entry_margin"
         android:layout_weight="2"
-        android:shadowColor="#0E0E0E"
+        android:shadowColor="@color/shadow"
         android:shadowDx="5"
         android:shadowDy="5"
         android:shadowRadius="2"
         android:textAlignment="textEnd"
-        android:textSize="@dimen/entry_text"
-        android:textStyle="bold" />
+        android:textSize="@dimen/entry_text" />
 
     <TableRow
         android:layout_width="wrap_content"
@@ -33,28 +30,26 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_c"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/_c"
-            android:textAlignment="center" />
+            android:text="@string/_c" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/invis_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="20"
             android:visibility="invisible" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_backspace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/_backspace"
-            android:textAlignment="center" />
+            android:text="@string/_backspace" />
     </TableRow>
 
 </TableLayout>

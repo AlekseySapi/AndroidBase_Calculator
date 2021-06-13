@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="button_text">30sp</dimen>
-    <dimen name="button_margin">5dp</dimen>
     <dimen name="entry_text">48sp</dimen>
-    <dimen name="entry_margin">15dp</dimen>
     <dimen name="keyboard_margin">5dp</dimen>
-    <dimen name="operation_text">35sp</dimen>
-    <dimen name="clear_buttons_margin">4dp</dimen>
+    <dimen name="operation_text_size">35sp</dimen>
+    <dimen name="clear_buttons_margin">5dp</dimen>
+    <dimen name="textSize">28sp</dimen>
+    <dimen name="margin">3dp</dimen>
 </resources>

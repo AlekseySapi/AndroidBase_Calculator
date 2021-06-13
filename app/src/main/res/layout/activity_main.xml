@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/fon"
     android:orientation="vertical"
+    android:theme="@style/MyStyle"
     tools:context=".MainActivity">
 
 
@@ -18,15 +19,12 @@
         layout="@layout/activity_main_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/clear_buttons_margin"
         android:layout_weight="8" />
 
     <include
-        android:id="@+id/include"
         layout="@layout/activity_main_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/keyboard_margin"
         android:layout_weight="1" />
 
 </LinearLayout>
