@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private String str, result;
     private String errMessage = "Ошибка";
 
+    private char[] charArr;
+
     private final View.OnClickListener listenerDigits = view -> {
         Button button = (Button) view;
         switch (operation.getText().toString()) {
@@ -29,12 +31,14 @@ public class MainActivity extends AppCompatActivity {
             }
             case "=": {
                 operation.setText("");
+                calc.setNum1(0);
+                calc.setNum2(0);
                 calc.setSecondEntry(true);
                 entryField.setText(button.getText());
                 break;
             }
             default: {
-                if(calc.isSecondEntry()) {
+                if (calc.isSecondEntry()) {
                     entryField.setText(button.getText());
                     calc.setSecondEntry(false);
                 } else {
@@ -61,12 +65,14 @@ public class MainActivity extends AppCompatActivity {
             }
             case "=": {
                 operation.setText("");
+                calc.setNum1(0);
+                calc.setNum2(0);
                 calc.setSecondEntry(true);
                 entryField.setText(button.getText());
                 break;
             }
             default: {
-                if(calc.isSecondEntry()) {
+                if (calc.isSecondEntry()) {
                     entryField.setText(button.getText());
                     calc.setSecondEntry(false);
                 } else {
@@ -81,20 +87,58 @@ public class MainActivity extends AppCompatActivity {
 
     private final View.OnClickListener listenerPoint = view -> {
         Button button = (Button) view;
-        if (entryField.getText() != null) {
-            str = entryField.getText().toString();
-            boolean hasPoint = false;
-            if (str.contains(button.getText())) {
-                hasPoint = true;
+        switch (operation.getText().toString()) {
+            case "": {
+                if (entryField.getText() != null) {
+                    str = entryField.getText().toString();
+                    boolean hasPoint = false;
+                    if (str.contains(button.getText())) {
+                        hasPoint = true;
+                    }
+                    if (!hasPoint) {
+                        entryField.append(button.getText());
+                    }
+                    str = "";
+                }
+                if (entryField.getText() == null || entryField.getText() == "0") {
+                    entryField.setText("0");
+                    entryField.append(button.getText());
+                }
+                break;
             }
-            if (!hasPoint) {
+            case "=": {
+                operation.setText("");
+                calc.setNum1(0);
+                calc.setNum2(0);
+                calc.setSecondEntry(true);
+                entryField.setText("0");
                 entryField.append(button.getText());
+                break;
             }
-            str = "";
-        }
-        if (entryField.getText() == null || entryField.getText() == "0") {
-            entryField.setText("0");
-            entryField.append(button.getText());
+            default: {
+                if (calc.isSecondEntry()) {
+                    entryField.setText("0");
+                    entryField.append(button.getText());
+                    calc.setSecondEntry(false);
+                } else {
+                    if (entryField.getText() != null) {
+                        str = entryField.getText().toString();
+                        boolean hasPoint = false;
+                        if (str.contains(button.getText())) {
+                            hasPoint = true;
+                        }
+                        if (!hasPoint) {
+                            entryField.append(button.getText());
+                        }
+                        str = "";
+                    }
+                    if (entryField.getText() == null || entryField.getText() == "0") {
+                        entryField.setText("0");
+                        entryField.append(button.getText());
+                    }
+                }
+                break;
+            }
         }
     };
 
@@ -108,25 +152,37 @@ public class MainActivity extends AppCompatActivity {
 
     private final View.OnClickListener listenerEquals = view -> {
         Button button = (Button) view;
-        if(!entryField.getText().toString().equals(errMessage)) {
+        if (!entryField.getText().toString().equals(errMessage)) {
             calc.setNum2(Double.parseDouble(entryField.getText().toString()));
             switch (operation.getText().toString()) {
                 case "+": {
                     result = String.valueOf(calc.plus(calc.getNum1(), calc.getNum2()));
-
-                    entryField.setText(result);
+                    charArr = result.toCharArray();
+                    if (charArr[charArr.length - 1] == '0' && charArr[charArr.length - 2] == '.') {
+                        entryField.setText(result.substring(0, result.length() - 2));
+                    } else {
+                        entryField.setText(result);
+                    }
                     break;
                 }
                 case "-": {
                     result = String.valueOf(calc.minus(calc.getNum1(), calc.getNum2()));
-
-                    entryField.setText(result);
+                    charArr = result.toCharArray();
+                    if (charArr[charArr.length - 1] == '0' && charArr[charArr.length - 2] == '.') {
+                        entryField.setText(result.substring(0, result.length() - 2));
+                    } else {
+                        entryField.setText(result);
+                    }
                     break;
                 }
                 case "×": {
                     result = String.valueOf(calc.multiply(calc.getNum1(), calc.getNum2()));
-
-                    entryField.setText(result);
+                    charArr = result.toCharArray();
+                    if (charArr[charArr.length - 1] == '0' && charArr[charArr.length - 2] == '.') {
+                        entryField.setText(result.substring(0, result.length() - 2));
+                    } else {
+                        entryField.setText(result);
+                    }
                     break;
                 }
                 case "÷": {
@@ -134,8 +190,12 @@ public class MainActivity extends AppCompatActivity {
                         entryField.setText(errMessage);
                     } else {
                         result = String.valueOf(calc.divide(calc.getNum1(), calc.getNum2()));
-
-                        entryField.setText(result);
+                        charArr = result.toCharArray();
+                        if (charArr[charArr.length - 1] == '0' && charArr[charArr.length - 2] == '.') {
+                            entryField.setText(result.substring(0, result.length() - 2));
+                        } else {
+                            entryField.setText(result);
+                        }
                     }
                     break;
                 }
@@ -149,6 +209,8 @@ public class MainActivity extends AppCompatActivity {
     private final View.OnClickListener listenerC = view -> {
         operation.setText("");
         entryField.setText("0");
+        calc.setNum1(0);
+        calc.setNum2(0);
         calc.setSecondEntry(true);
     };
 
