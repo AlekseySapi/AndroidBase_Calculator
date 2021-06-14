@@ -12,14 +12,14 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="5" />
+        android:layout_weight="9" />
 
 
     <include
         layout="@layout/activity_main_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="8" />
+        android:layout_weight="7" />
 
     <include
         layout="@layout/activity_main_table"

@@ -30,10 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             case "=": {
-                operation.setText("");
-                calc.setNum1(0);
-                calc.setNum2(0);
-                calc.setSecondEntry(true);
+                clearFields();
                 entryField.setText(button.getText());
                 break;
             }
@@ -64,10 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             case "=": {
-                operation.setText("");
-                calc.setNum1(0);
-                calc.setNum2(0);
-                calc.setSecondEntry(true);
+                clearFields();
                 entryField.setText(button.getText());
                 break;
             }
@@ -107,10 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             }
             case "=": {
-                operation.setText("");
-                calc.setNum1(0);
-                calc.setNum2(0);
-                calc.setSecondEntry(true);
+                clearFields();
                 entryField.setText("0");
                 entryField.append(button.getText());
                 break;
@@ -207,11 +198,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private final View.OnClickListener listenerC = view -> {
-        operation.setText("");
+        clearFields();
         entryField.setText("0");
-        calc.setNum1(0);
-        calc.setNum2(0);
-        calc.setSecondEntry(true);
     };
 
     private final View.OnClickListener listenerBackspace = view -> {
@@ -227,6 +215,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -238,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    
 
     private void initTextView() {
         operation = findViewById(R.id.operation);
@@ -286,6 +276,13 @@ public class MainActivity extends AppCompatActivity {
         buttonEquals.setOnClickListener(listenerEquals);
         backspace.setOnClickListener(listenerBackspace);
         buttonC.setOnClickListener(listenerC);
+    }
+
+    private void clearFields() {
+        operation.setText("");
+        calc.setNum1(0);
+        calc.setNum2(0);
+        calc.setSecondEntry(true);
     }
 
 }
