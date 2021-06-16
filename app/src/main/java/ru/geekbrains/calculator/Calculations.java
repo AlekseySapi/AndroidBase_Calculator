@@ -2,39 +2,57 @@ package ru.geekbrains.calculator;
 
 public class Calculations {
 
-    private double number1;
-    private double number2;
-    private double result;
+    private double num1, num2;
+    private final int ROUND = 3;    // Округление при делении
+    private boolean isSecondEntry = true;
 
-    public Calculations() {
-        this.number1 = 0;
-        this.number2 = 0;
-        this.result = 0;
+    public boolean isSecondEntry() {
+        return isSecondEntry;
     }
 
-    public double getNumber1() {
-        return number1;
+    public void setSecondEntry(boolean secondEntry) {
+        isSecondEntry = secondEntry;
     }
 
-    public void setNumber1(int number1) {
-        this.number1 = number1;
+    public double getNum1() {
+        return num1;
     }
 
-    public double getNumber2() {
-        return number2;
+    public void setNum1(double num1) {
+        this.num1 = num1;
     }
 
-    public void setNumber2(int number2) {
-        this.number2 = number2;
+    public double getNum2() {
+        return num2;
     }
 
-    public double getResult() {
-        return result;
+    public void setNum2(double num2) {
+        this.num2 = num2;
     }
 
-    public void setResult(double result) {
-        this.result = result;
+//    Сделал округление, потому что были случаи результата со множеством лишних цифр после запятой - нужно разобраться
+    public double plus(double num1, double num2) {
+        double scale = Math.pow(10, ROUND);
+        return Math.round((num1 + num2) * scale) / scale;
     }
 
+    public double minus(double num1, double num2) {
+        double scale = Math.pow(10, ROUND);
+        return Math.round((num1 - num2) * scale) / scale;
+    }
+
+    public double multiply(double num1, double num2) {
+        double scale = Math.pow(10, ROUND);
+        return Math.round((num1 * num2) * scale) / scale;
+    }
+
+    public double divide(double num1, double num2) {
+        if (num2 == 0) {
+            return -1;
+        } else {
+            double scale = Math.pow(10, ROUND);
+            return Math.round((num1 / num2) * scale) / scale;
+        }
+    }
 
 }
