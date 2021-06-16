@@ -28,9 +28,20 @@ public class MainActivity extends AppCompatActivity {
         initTextView();
         initDigitButtons();
         initActionButtons();
+        initThemeButton();
 
 
     }
+
+    private void initThemeButton() {
+        Button buttonChangeTheme = findViewById(R.id.button_theme_change);
+
+        buttonChangeTheme.setOnClickListener(listenerThemeChange);
+    }
+
+    private final View.OnClickListener listenerThemeChange = view -> {
+        setContentView(R.layout.activity_main_settings);
+    };
 
     private void initTextView() {
         operation = findViewById(R.id.operation);
@@ -61,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         button8.setOnClickListener(listenerDigits);
         button9.setOnClickListener(listenerDigits);
         buttonPoint.setOnClickListener(listenerPoint);
+
     }
 
     private void initActionButtons() {
