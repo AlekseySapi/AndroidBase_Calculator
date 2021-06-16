@@ -19,4 +19,7 @@
     <string name="number_entry">0</string>
     <string name="_backspace"><![CDATA[<]]></string>
     <string name="_c">C</string>
+    <string name="light_theme">Light Theme</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="theme_choice">Выбор темы:</string>
 </resources>
